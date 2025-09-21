@@ -5,7 +5,8 @@ export async function GET(request: NextRequest, { params }: { params: { roomId: 
 
   try {
     // WebSocketサーバーに直接問い合わせ
-    const response = await fetch(`http://localhost:8080/api/room/${roomId}`, {
+    const wsHost = process.env.WEBSOCKET_SERVER_URL || 'http://localhost:8080'
+    const response = await fetch(`${wsHost}/api/room/${roomId}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

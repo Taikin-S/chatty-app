@@ -55,7 +55,8 @@ export class ChatWebSocket {
       }
 
       // WebSocketサーバーに接続
-      const wsUrl = `ws://localhost:8080?roomId=${encodeURIComponent(this.roomId)}&nickname=${encodeURIComponent(this.nickname)}`
+      const wsHost = process.env.NEXT_PUBLIC_WEBSOCKET_URL || 'ws://localhost:8080'
+      const wsUrl = `${wsHost}?roomId=${encodeURIComponent(this.roomId)}&nickname=${encodeURIComponent(this.nickname)}`
       this.ws = new WebSocket(wsUrl)
 
       this.ws.onopen = () => {

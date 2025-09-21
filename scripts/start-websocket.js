@@ -117,8 +117,9 @@ const server = http.createServer((req, res) => {
 // WebSocketサーバーを起動
 const wss = new WebSocketServer({ server })
 
-server.listen(8080, () => {
-  console.log('WebSocket server started on port 8080')
+const PORT = process.env.PORT || 8080
+server.listen(PORT, () => {
+  console.log(`WebSocket server started on port ${PORT}`)
 })
 
 // ユーザーごとの接続を追跡
